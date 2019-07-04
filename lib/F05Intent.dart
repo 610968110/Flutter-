@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/base/BaseApp.dart';
+import 'package:flutter/services.dart';
 
-main() => runApp(new BaseApp(new CustomButton("hello widget")));
+main() => runApp(new BaseApp(new SampleAppPage()));
 
-// 在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
-class CustomButton extends StatelessWidget {
-  final String label;
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
 
-  CustomButton(this.label);
+  @override
+  _SampleAppPageState createState() => new _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State<SampleAppPage> {
+  static const platform = const MethodChannel('app.channel.shared.data');
+  String dataShared = "No data";
+
+  @override
+  void initState() {
+    super.initState();
+    print("init");
+    getSharedText();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return new RaisedButton(onPressed: () {}, child: new Text(label));
+    return new Scaffold(body: new Center(child: new Text(dataShared)));
+  }
+
+  getSharedText() async {
+    var sharedData = await platform.invokeMethod("getSharedText");
+    if (sharedData != null) {
+      setState(() {
+        dataShared = sharedData;
+      });
+    }
   }
 }

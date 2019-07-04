@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/base/MyAppBar.dart';
+import 'package:flutter_learn/base/BaseApp.dart';
 
-class F01Animator extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: MyAppBar("01"),
-      body: new MyAnimatorWidget(),
-    );
-  }
-}
+main() => runApp(new BaseApp(new HomeBody()));
 
-class MyAnimatorWidget extends StatefulWidget {
+class HomeBody extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new MyAnimatorWidgetState();
 }
 
-class MyAnimatorWidgetState extends State<MyAnimatorWidget>
+class MyAnimatorWidgetState extends State<HomeBody>
     with TickerProviderStateMixin {
   AnimationController controller;
   CurvedAnimation curve;
@@ -49,5 +41,3 @@ class MyAnimatorWidgetState extends State<MyAnimatorWidget>
     );
   }
 }
-
-

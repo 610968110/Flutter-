@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/base/BaseApp.dart';
 
-main() => runApp(new BaseApp(new CustomButton("test")));
+main() => runApp(new BaseApp(new CustomButton("hello widget")));
 
-//在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
+// 在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
 class CustomButton extends StatelessWidget {
   final String label;
 

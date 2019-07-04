@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/base/BaseApp.dart';
 
-class CanvasApp extends StatelessWidget {
-  Widget build(BuildContext context) => new Scaffold(body: new Signature());
-}
+main() => runApp(new BaseApp(new CanvasApp()));
 
 class SignaturePainter extends CustomPainter {
   SignaturePainter(this.points);
@@ -23,11 +22,11 @@ class SignaturePainter extends CustomPainter {
   bool shouldRepaint(SignaturePainter other) => other.points != points;
 }
 
-class Signature extends StatefulWidget {
+class CanvasApp extends StatefulWidget {
   SignatureState createState() => new SignatureState();
 }
 
-class SignatureState extends State<Signature> {
+class SignatureState extends State<CanvasApp> {
   List<Offset> _points = <Offset>[];
 
   Widget build(BuildContext context) {
@@ -47,5 +46,5 @@ class SignatureState extends State<Signature> {
 }
 
 class DemoApp extends StatelessWidget {
-  Widget build(BuildContext context) => new Scaffold(body: new Signature());
+  Widget build(BuildContext context) => new Scaffold(body: new CanvasApp());
 }
